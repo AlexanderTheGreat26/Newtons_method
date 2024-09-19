@@ -42,7 +42,7 @@ void standard_newtons_method (const double & a, const double & b, const double &
     int n = 0;
     do {
         ++n;
-        c = c - original_function(c) / diff(c);
+        c -= original_function(c) / diff(c);
         std::cout << n << '\t' << c << '\n';
     } while (std::fabs(original_function(c)) >= eps);
 }
@@ -52,10 +52,10 @@ void simplified_newtons_method (const double & a, const double & b, const double
     std::cout << "Simplified Newton's method\n";
     int n = 0;
     double c = (original_function(a) * diff2(b) > 0) ? c = a : c = b; // initial approximation
-    double k = c;
+    double k = diff(c);
     do {
         ++n;
-        c = c - original_function(c) / diff(k);
+        c -= original_function(c) / k;
         std::cout << n << '\t' << c << '\n';
     } while (std::fabs(original_function(c)) >= eps);
 }
